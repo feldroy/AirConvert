@@ -31,8 +31,5 @@ def test_html_to_tags_multi_attrs():
 
     assert (
         tags
-        == """air.Form(action=".", method="post", class_="searcho")(
-    air.Label(for_="search")("Search:", air.Input(type="search", name="search"))
-)
-"""
+        == """air.Form(\n    air.Label("Search:", air.Input(type="search", name="search"), for_="search"),\n    action=".",\n    method="post",\n    class_="searcho",\n)\n"""
     )
