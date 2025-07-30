@@ -1,6 +1,6 @@
 [project]
 name = "air-convert"
-version = "0.1.0"
+version = "0.1.1"
 description = "Utility for converting HTML to Air Tags"
 readme = "README.md"
 authors = [
