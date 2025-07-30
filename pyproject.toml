@@ -1,7 +1,7 @@
 [project]
 name = "air-convert"
 version = "0.1.0"
-description = "Utilities for converting HTML to Air Tags"
+description = "Utility for converting HTML to Air Tags"
 readme = "README.md"
 authors = [
   {name = "Audrey M. Roy Greenfeld", email = "audrey@feldroy.com"},
@@ -50,9 +50,9 @@ test = [
 
 [project.urls]
 
-bugs = "https://github.com/feldroy/air_convert/issues"
-changelog = "https://github.com/feldroy/air_convert/blob/master/changelog.md"
-homepage = "https://github.com/feldroy/air_convert"
+bugs = "https://github.com/feldroy/air-convert/issues"
+changelog = "https://github.com/feldroy/air-convert/blob/master/changelog.md"
+homepage = "https://github.com/feldroy/air-convert"
 
 # [tool.setuptools]
 # package-dir = {"" = "src"}
