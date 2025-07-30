@@ -1,0 +1,40 @@
+
+<!doctype html><html><head><meta property="og:image" content="/public/images/profile.jpg" /><meta property="og:site_name" content="https://daniel.feldroy.com" /><meta property="og:image:type" content="image/png" /><meta property="og:type" content="website" /><meta property="og:url" content="https://daniel.feldroy.com/about" /><meta property="og:title" content="About Daniel Roy Greenfeld" /><meta property="og:description" content="A little bit of background about Daniel Roy Greenfeld" /><meta name="twitter:image" content="https://daniel.feldroy.com/public/images/profile.jpg" /><meta name="twitter:card" content="summary" /><meta name="twitter:title" content="About Daniel Roy Greenfeld" /><meta name="twitter:description" content="A little bit of background about Daniel Roy Greenfeld" /><link rel="canonical" href="https://daniel.feldroy.com/about" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" /><script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js" integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm" crossorigin="anonymous"></script><style>:root { --pico-font-size: 100%; }</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/atom-one-dark.css" media="(prefers-color-scheme: dark)" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/atom-one-light.css" media="(prefers-color-scheme: light)" /><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/python.min.js"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/javascript.min.js"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/html.min.js"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/css.min.js"></script><script src="/public/render.js"></script><link rel="stylesheet" href="/public/style.css" type="text/css" /><title>About Daniel Roy Greenfeld</title></head><body><header style="text-align: center;"><a href="/"><img class="borderCircle" alt="Daniel Roy Greenfeld" src="/public/images/profile.jpg" width="108" height="108" /></a><a href="/"><h2>Daniel Roy Greenfeld</h2></a><p><a href="/about">About</a> | <a href="/posts">Articles</a> | <a href="/books">Books</a> | <a href="/jobs">Jobs</a> | <a href="/tags">Tags</a> | <a href="/search">Search</a></p></header><main class="container"><section><h1>About Daniel Roy Greenfeld</h1><p>Daniel Roy Greenfeld<br /><small><time></time></small></p><div class="marked">
+
+# About Me
+
+I am a [coder](https://github.com/pydanny), [author](/books), and speaker.
+
+I&#x27;m probably best known as &quot;[pydanny](https://www.google.com/search?q=pydanny)&quot;, one of the authors of [Two Scoops of Django](/books/tech). 
+
+I love to hang out with my [wife](https://audrey.feldroy.com/), play with my [daughter](/tags/uma), do [Brazilian Jiu-Jitsu](https://en.wikipedia.org/wiki/Brazilian_jiu-jitsu), write [books](/books), and read books. I track my fitness [here](/fitness) and my writing [here](/writing-stats).
+
+I am on sabbatical from [Kraken Tech](https://kraken.tech/), part of the sustainable global energy  [Octopus Energy Group](https://octopusenergy.group/). There I worked toward the mission of addressing [global climate change](/tags/climate-change).
+
+- [LinkedIn](https://www.linkedin.com/in/danielfeldroy/)
+- [Bluesky](https://bsky.app/profile/pydanny.bsky.social)
+- [Twitter](https://twitter.com/pydanny)
+
+## About this site
+
+This site is written using the [Air](https://github.com/feldroy/air) web framework. The source code is on [github](https://github.com/pydanny/daniel-blog-air).
+
+## What about pydanny.com?
+
+That site redirects here. The reason for that is while I&#x27;m a huge fan of the Python programming language, there are other languages that I like just as much. To be forever tied to one language felt limiting, hence why I moved the site to daniel.feldroy.com and stopped using &quot;pydanny&quot; so much.
+</div></section></main><footer class="container"><hr /><p><a href="https://www.linkedin.com/in/danielfeldroy/">LinkedIn</a> | <a href="https://bsky.app/profile/daniel.feldroy.com">Bluesky</a> | <a href="https://twitter.com/pydanny">Twitter</a> | Feeds: <a href="/feeds/atom.xml">All</a>, <a href="/feeds/python.atom.xml">Python</a>, <a href="/feeds/til.atom.xml">TIL</a></p><p>All rights reserved 2025, Daniel Roy Greenfeld</p></footer><dialog id="search-modal" style="display:none;" class="modal overflow-auto"><header class="modal-content"><h2>Search</h2><input name="q" type="text" id="search-input" hx-trigger="keyup" placeholder="Enter your search query..." hx-get="/search-results" hx-target=".search-results-modal" /><div class="search-results-modal"></div></header></dialog><div hx-trigger="keyup[key=='/'] from:body"></div><script>
+            document.body.addEventListener('keydown', e => {
+            if (e.key === '/') {
+                e.preventDefault();
+                document.getElementById('search-modal').style.display = 'block';
+                document.getElementById('search-input').focus();
+            }
+            if (e.key === 'Escape') {
+                document.getElementById('search-modal').style.display = 'none';
+            }
+            });
+
+            document.getElementById('search-input').addEventListener('input', e => {
+            htmx.trigger('.search-results', 'htmx:trigger', {value: e.target.value});
+            });
+            </script></body></html>
