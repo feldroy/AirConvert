@@ -64,7 +64,7 @@ homepage = "https://github.com/feldroy/air-convert"
 find = { where = ["src"] }
 
 [project.scripts]
-air_convert = "air_convert.cli:app"
+air-convert = "air_convert.cli:app"
 
 [tool.ty]
 # All rules are enabled as "error" by default; no need to specify unless overriding.

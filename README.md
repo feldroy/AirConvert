@@ -26,10 +26,20 @@ uv add air-covert
 ## Usage from the command line
 
 ```sh
-air_convert local/path/to/my/page.html
+air-convert local/path/to/my/page.html
 ```
 
-In the future we plan to support HTTP GETs
+When combined with curl or wget:
+
+```sh
+curl -o page.html https://example.com && air-convert page.html
+```
+
+```sh
+wget -O page.html https://example.com && air-convert page.html
+```
+
+
 
 ## Programmatic usage
 
