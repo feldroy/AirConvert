@@ -63,3 +63,5 @@ air.Main(
 - This package was created with the awesome [Cookiecutter](https://github.com/audreyfeldroy/cookiecutter) and the [audreyfeldroy/cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage) project template.
 - Uses the elegant Typer framework to provide a CLI interface
 - Relies on BeautifulSoup4 for parsing of HTML
+- Formatting of generated code provided by Ruff
+
