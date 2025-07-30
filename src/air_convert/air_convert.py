@@ -79,7 +79,7 @@ def _html_to_airtags(html, air_prefix: bool = True) -> str:
             return f"{prefix}{tag_name}(\n{spc}{inner}\n{' ' * (level - 1) * 4})"
         inner_children = j.join(filter(None, children))
         inner_attrs = ", ".join(filter(None, attrs))
-        return f"{prefix}{tag_name}({inner_attrs})(\n{spc}{inner_children}\n{' ' * (level - 1) * 4})"
+        return f"{prefix}{tag_name}(\n{spc}{inner_children}\n{' ' * (level - 1) * 4}, {inner_attrs})"
 
     # prep the html by removing comments
     soup = BeautifulSoup(html.strip(), "html.parser")
