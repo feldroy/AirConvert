@@ -49,12 +49,11 @@ Ready to contribute? Here's how to set up `air_convert` for local development.
    git clone git@github.com:your_name_here/air_convert.git
    ```
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development:
+3. Install your local copy into a virtualenv. Assuming you have uv installed, this is how you set up your fork for local development:
 
    ```sh
-   mkvirtualenv air_convert
-   cd air_convert/
-   python setup.py develop
+   cd air_convert
+   uv sync --extra dev
    ```
 
 4. Create a branch for local development:
@@ -65,16 +64,14 @@ Ready to contribute? Here's how to set up `air_convert` for local development.
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass flake8 and the tests, including testing other Python versions with tox:
+5. When you're done making changes, check that your changes pass flake8 and the tests, including testing other Python versions:
 
    ```sh
-   make lint
-   make test
+   just test   
+   just qa
    # Or
-   make test-all
+   just testall
    ```
-
-   To get flake8 and tox, just pip install them into your virtualenv.
 
 6. Commit your changes and push your branch to GitHub:
 
@@ -99,7 +96,7 @@ Before you submit a pull request, check that it meets these guidelines:
 To run a subset of tests:
 
 ```sh
-pytest tests.test_air_convert
+just test tests.test_air_convert
 ```
 
 ## Deploying
@@ -107,7 +104,6 @@ pytest tests.test_air_convert
 A reminder for the maintainers on how to deploy. Make sure all your changes are committed (including an entry in HISTORY.md). Then run:
 
 ```sh
-bump2version patch # possible: major / minor / patch
 git push
 git push --tags
 ```

@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from air_convert import html_to_airtags
 
 
@@ -33,3 +35,14 @@ def test_html_to_tags_multi_attrs():
         tags
         == """air.Form(\n    air.Label("Search:", air.Input(type="search", name="search"), for_="search"),\n    action=".",\n    method="post",\n    class_="searcho",\n)\n"""
     )
+
+
+def test_doesnt_include_html_from_page():
+    """HTML files starting with <!doctype html> can throw this off.
+
+    This page was fetched with:
+        curl -o page.html https://example.com && air-convert page.html
+    """
+    path = Path("tests/test_page.html")
+    tags = html_to_airtags(path.read_text())
+    assert not tags.startswith('"html"')

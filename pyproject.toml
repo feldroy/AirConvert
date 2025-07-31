@@ -40,12 +40,15 @@ dependencies = [
 requires-python = ">= 3.10"
 
 [project.optional-dependencies]
+dev = ["rust-just"]
+
 test = [
     "coverage",  # testing
     "pytest",  # testing
     "ruff",  # linting
     "ty", # checking types
-    "ipdb"    
+    "ipdb",
+    "rust-just"
 ]
 
 [project.urls]

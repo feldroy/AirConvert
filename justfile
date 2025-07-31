@@ -1,22 +1,22 @@
 # Run all the formatting, linting, and testing commands
 qa:
-    ruff format .
-    ruff check . --fix
-    ruff check --select I --fix .
-    ty check .
-    pytest .
+    uv run --python=3.13 --extra test ruff format .
+    uv run --python=3.13 --extra test ruff check . --fix
+    uv run --python=3.13 --extra test ruff check --select I --fix .
+    uv run --python=3.13 --extra test ty check .
+    uv run --python=3.13 --extra test pytest .
 
 # Run all the tests for all the supported Python versions
 testall:
-    uv run --python=3.10 --extra dev pytest
-    uv run --python=3.11 --extra dev pytest
-    uv run --python=3.12 --extra dev pytest
-    uv run --python=3.13 --extra dev pytest
+    uv run --python=3.10 --extra test pytest
+    uv run --python=3.11 --extra test pytest
+    uv run --python=3.12 --extra test pytest
+    uv run --python=3.13 --extra test pytest
 
 # Run all the tests, but allow for arguments to be passed
 test *ARGS:
     @echo "Running with arg: {{ARGS}}"
-    uv run --python=3.13 --extra dev pytest {{ARGS}}
+    uv run --python=3.13 --extra test pytest {{ARGS}}
 
 # Run all the tests, but on failure, drop into the debugger
 pdb *ARGS:

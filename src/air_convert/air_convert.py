@@ -9,7 +9,10 @@ from bs4 import BeautifulSoup, Comment
 
 def html_to_airtags(html, air_prefix: bool = True) -> str:
     """Converts HTML to Air Tags."""
-    return _html_to_airtags(html, air_prefix)
+    result = _html_to_airtags(html, air_prefix).strip()
+    if result.strip().startswith("'html'"):
+        result = result.strip()[6:]
+    return format_with_ruff(result)
 
 
 def _html_to_airtags(html, air_prefix: bool = True) -> str:
@@ -90,7 +93,7 @@ def _html_to_airtags(html, air_prefix: bool = True) -> str:
     parsed = parse(soup, 1)
 
     # Attempt to use ruff to reformat the string
-    return format_with_ruff(parsed.strip())
+    return parsed.strip()
 
 
 def format_with_ruff(code: str) -> str:
