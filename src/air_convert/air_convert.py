@@ -4,7 +4,7 @@ import shutil
 import subprocess
 import tempfile
 
-from bs4 import BeautifulSoup, Comment
+from bs4 import BeautifulSoup, Comment, ProcessingInstruction
 
 
 def html_to_airtags(html, air_prefix: bool = True) -> str:
@@ -37,23 +37,29 @@ def _html_to_airtags(html, air_prefix: bool = True) -> str:
     limitations under the License.
 
     """
-    prefix = "air." if air_prefix else ""
+    base_prefix = "air." if air_prefix else ""
 
-    def parse(element, level=0):
+    def parse(element, level=0, in_svg=False):
         if isinstance(element, str):
             return repr(element.strip()) if element.strip() else ""
         if isinstance(element, list):
-            return "\n".join(parse(o, level) for o in element)
+            return "\n".join(parse(o, level, in_svg) for o in element)
         tag_name = element.name.capitalize().replace("-", "_")
         if tag_name == "[document]":
-            return parse(list(element.children), level)
+            return parse(list(element.children), level, in_svg)
+
+        # Check if this is an SVG element or if we're inside an SVG
+        is_svg = tag_name.lower() == "svg"
+        current_in_svg = in_svg or is_svg
+        prefix = f"{base_prefix}svg." if current_in_svg else base_prefix
+
         children = []
         for c in element.contents:
             if str(c).strip():
                 if isinstance(c, str):
                     children.append(repr(c.strip()))
                 else:
-                    children.append(parse(c, level + 1))
+                    children.append(parse(c, level + 1, current_in_svg))
         attrs, exotic_attrs = [], {}
         for key, value in sorted(element.attrs.items(), key=lambda x: x[0] == "class"):
             if value is None or value is True:
@@ -84,13 +90,13 @@ def _html_to_airtags(html, air_prefix: bool = True) -> str:
         inner_attrs = ", ".join(filter(None, attrs))
         return f"{prefix}{tag_name}(\n{spc}{inner_children}\n{' ' * (level - 1) * 4}, {inner_attrs})"
 
-    # prep the html by removing comments
-    soup = BeautifulSoup(html.strip(), "html.parser")
-    for comment in soup.find_all(string=lambda text: isinstance(text, Comment)):
-        comment.extract()
+    # prep the html by removing comments and processing instructions (like the <?xml ...?> tag)
+    soup = BeautifulSoup(html.strip(), features="xml")
+    for bad_tag in soup.find_all(string=lambda text: isinstance(text, (Comment, ProcessingInstruction))):
+        bad_tag.extract()
 
     # Convert the text
-    parsed = parse(soup, 1)
+    parsed = parse(soup, 1, False)
 
     # Attempt to use ruff to reformat the string
     return parsed.strip()

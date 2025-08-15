@@ -101,12 +101,40 @@ just test tests.test_air_convert
 
 ## Deploying
 
-A reminder for the maintainers on how to deploy. Make sure all your changes are committed (including an entry in HISTORY.md). Then run:
+A reminder for the maintainers on how to deploy to pypi. Make sure all changes are committed and merged. Then:
+
+1. Update the version in `pyproject.toml`
+2. Run `uv sync` to update the lockfile:
 
 ```sh
-git push
-git push --tags
+uv sync
 ```
+
+3. Run a build test:
+
+```sh
+just build
+```
+
+4. Commit the changes
+
+```sh
+git commit -am 'Release vX.X.X'
+```
+
+5. Tag the current branch and push it up to github with this command:
+
+```sh
+just tags
+```
+
+6. If GitHub Action to deploy to PyPI isn't set up, use this command where `UV_PUBLISH_TOKEN` is your PyPI token:
+
+```sh
+uv publish -t $UV_PUBLISH_TOKEN
+```
+
+7. Once this is done, you can use the GitHub web interface to turn the tag into a formal release.
 
 You can set up a [GitHub Actions workflow](https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python#publishing-to-pypi) to automatically deploy your package to PyPI when you push a new tag.
 

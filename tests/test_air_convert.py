@@ -46,3 +46,25 @@ def test_doesnt_include_html_from_page():
     path = Path("tests/test_page.html")
     tags = html_to_airtags(path.read_text())
     assert not tags.startswith('"html"')
+
+
+def test_svg_file():
+    """Can we convert a file?"""
+    path = Path("tests/air_logo.svg.html")
+    tags = html_to_airtags(path.read_text())
+    assert "air.Svg" not in tags
+    assert "air.svg.Svg(" in tags
+    assert "air.svg.Defs(" in tags
+    assert "air.svg.G(" in tags
+    assert "air.svg.Path(" in tags
+
+
+def test_svg_page():
+    """Can we convert a file?"""
+    path = Path("tests/air_logo_page.html")
+    tags = html_to_airtags(path.read_text())
+    assert "air.Svg" not in tags
+    assert "air.svg.Svg(" in tags
+    assert "air.svg.Defs(" in tags
+    assert "air.svg.G(" in tags
+    assert "air.svg.Path(" in tags
