@@ -47,12 +47,12 @@ def _html_to_airtags(html, air_prefix: bool = True) -> str:
         tag_name = element.name.capitalize().replace("-", "_")
         if tag_name == "[document]":
             return parse(list(element.children), level, in_svg)
-        
+
         # Check if this is an SVG element or if we're inside an SVG
         is_svg = tag_name.lower() == "svg"
         current_in_svg = in_svg or is_svg
         prefix = f"{base_prefix}svg." if current_in_svg else base_prefix
-        
+
         children = []
         for c in element.contents:
             if str(c).strip():
@@ -93,7 +93,7 @@ def _html_to_airtags(html, air_prefix: bool = True) -> str:
     # prep the html by removing comments and processing instructions (like the <?xml ...?> tag)
     soup = BeautifulSoup(html.strip(), features="xml")
     for bad_tag in soup.find_all(string=lambda text: isinstance(text, (Comment, ProcessingInstruction))):
-        bad_tag.extract()     
+        bad_tag.extract()
 
     # Convert the text
     parsed = parse(soup, 1, False)
